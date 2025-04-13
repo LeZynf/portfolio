@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Salim Colo</title>
+
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="style.css" as="style">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="style.css" media="all">
+    
+    <!-- Google Fonts with display swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Font Awesome with integrity check -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" 
+          crossorigin="anonymous" 
+          referrerpolicy="no-referrer"
+          media="print" 
+          onload="this.media='all'">
+    
+    <!-- Fallback for Font Awesome -->
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </noscript>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <div class="menu-toggle">&#9776;</div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#Accueil">Accueil</a></li>
+                <li><a href="#Projet">Projets</a></li>
+                <li><a href="#Parcours">Parcours</a></li>
+                <li><a href="#Competences">Compétences</a></li>
+                <li><a href="#Apropos">À Propos</a></li>
+                <li><a href="#Contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section Accueil -->
+    <section id="Accueil" class="bg-b first-section">
+        <div class="flex hor Accueil">
+            <div class="photo-container">
+                <img src="images/salim-nbg.png" alt="Photo de Salim Colo" class="shadow">
+                <div class="fade-bottom"></div>
+            </div>
+
+
+            <div class="intro-text">
+                <h1>Bienvenue Sur Mon Portfolio</h1>
+                <p>Étudiant en <b>BUT Informatique</b> (2023 - 2026), je suis passionné par le développement</p> 
+                <p> Mon objectif : devenir développeur <u>front-end, back-end ou full-stack</u>.</p>
+                <p>Explorez mes projets, compétences et parcours et n’hésitez pas à me <a href="#Contact">contacter</a> !</p>
+                <div class="button-container">
+                    <a href="documents/cvAlternance.pdf" class="btn" download>Télécharger mon CV</a>
+                 
+                </div>
+            </div>
+        </div>
+<img class="bubble" src="images/bubble.webp" alt="">
+
+    </section>
+
+    
+    <!-- Section Projets -->
+    <section id="Projet" class="section">
+        <div class="modern-grid"></div>
+        <h2>Mes Projets</h2>
+        <div class="carousel">
+            <div class="carousel-inner">
+                
+            <div class="carousel-item">
+                <div class="card shadowmulti">
+                    <h3 class="project-title">1. SNC'Hess</h3>
+                    <div class="center">
+                 <img src="images/train1.png" alt="snch">
+                    </div>
+                    <div class="overlay">
+                        <div class="text">
+                            <h3>1. SNC'Hess </h3>
+                            <p> Développement d'un site innovant pour la recherche de trajets, mettant en avant la concurrence sur le marché du transport. 
+                                Utilisation d'une base de données NoSQL MongoDB et de Node.js pour la gestion des fonctionnalités. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="card shadowmulti">
+                    <h3 class="project-title">2. Travia</h3>
+                    <div class="center">
+                        <img src="images/travia.png" alt="Travia">
+                        <img src="images/travia2.png" alt="Travia2">
+                    </div>
+                    <div class="overlay">
+                        <div class="text">
+                            <h3>2. Travia </h3>
+                            <p> Développement d'un site web dédié à la recherche de voyages spatiaux, 
+                                inspiré de l'univers de Star Wars, intégrant une base de données et des calculs avancés.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="card shadowmulti">
+                    <h3 class="project-title">3. BIF</h3>
+                    <div class="center">
+                        <img src="images/bif1.png" alt="BIF">
+                        <img src="images/bif2.png" alt="BIF">
+                    </div>
+                    <div class="overlay">
+                        <div class="text">
+                            <h3>3. BIF</h3>
+                            <p>Développement d'un gestionnaire de transactions bancaires intégrant une base de données, des graphiques interactifs et des fonctionnalités téléchargeables.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="card shadowmulti">
+                    <h3 class="project-title">4. Base de Données</h3>
+                    <div class="center">
+                        <img src="images/ski.png" alt="Base de Données">
+                    </div>
+                    <div class="overlay">
+                        <div class="text">
+                            <h3>4. Base de Données</h3>
+                            <p>Intégration d'une base de données <b>MySQL</b> et <b>PostgreSQL</b> dans un site PHP pour une entreprise de ski.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="card shadowmulti">
+                    <h3 class="project-title">5. Projet UNESCO</h3>
+                    <div class="center">
+                        <img src="images/florencee.png" alt="Projet UNESCO">
+                    </div>
+                    <div class="overlay">
+                        <div class="text">
+                            <h3>5. Projet UNESCO</h3>
+                            <p>Site web touristique créé avec <b>HTML5, CSS3 et PHP</b>, dédié aux patrimoines UNESCO.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="card shadowmulti">
+                    <h3 class="project-title">6. Le Qix</h3>
+                    <div class="center">
+                        <img src="images/qix.png" alt="Qix">
+                    </div>
+                    <div class="overlay">
+                        <div class="text">
+                            <h3>6. Le Qix</h3>
+                            <p>Un jeu rétro réalisé en <b>Python</b> utilisant FLTK, recréant le célèbre jeu d'arcade Qix.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            </div>
+            <button class="carousel-control prev" onclick="prevSlide()">&#10094;</button>
+            <button class="carousel-control next" onclick="nextSlide()">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- Section Parcours -->
+<section id="Parcours" class="section bg-dark">
+    <h2>Mon Parcours</h2>
+    <div class="timeline-container">
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-date">2023 - Présent</div>
+                <h3>BUT Informatique</h3>
+                <p><a href="https://www.univ-gustave-eiffel.fr/" target="_blank" rel="noopener noreferrer">IUT Gustave Eiffel</a></p>
+                <ul>
+                    <li>Développement d'applications</li>
+                    <li>Programmation web</li>
+                    <li>Base de données</li>
+                    <li>2ème année en cours</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-date">2020 - 2023</div>
+                <h3>Baccalauréat Général</h3>
+                <p><a href="https://lyceecharleslechauve.eu/" target="_blank" rel="noopener noreferrer">Lycée Charles Le Chauve</a> - Roissy-en-Brie</p>
+                <ul>
+                    <li>Spécialités : Mathématiques, Physique-Chimie (+ SES)</li>
+                    <li>Mention : Bien</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-date">2016 - 2020</div>
+                <h3>Brevet des Collèges</h3>
+                <p><a href="https://www.college-eugene-delacroix-roissy.com/" target="_blank" rel="noopener noreferrer">Collège Eugène Delacroix</a></p>
+                <li>Mention : Très Bien</li>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-date">2005</div>
+                <h3>Naissance</h3>
+                <p>Début de l'aventure</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Section Compétences -->
+<!-- Section Compétences -->
+<section id="Competences" class="section bg-b">
+    <h2>Mes Compétences</h2>
+    <div class="competence-wrapper">
+        <a href="competence/realiser.html" class="competence-link"><div class="competence-box" >
+            <h3>Réaliser</h3>
+        </div></a>
+        <a href="competence/gerer.html" class="competence-link"><div class="competence-box" >
+            <h3>Gérer</h3>
+        </div></a>
+
+        <a href="competence/conduire.html" class="competence-link"><div class="competence-box" >
+            <h3>Conduire</h3>
+        </div></a>
+
+
+        <a href="competence/optimiser.html" class="competence-link"><div class="competence-box" >
+            <h3>Optimiser</h3>   
+        </div></a>
+
+        <a href="competence/Administrer.html" class="competence-link"><div class="competence-box" >
+            <h3>Administrer</h3>
+        </div></a>
+
+
+        <a href="competence/collaborer.html" class="competence-link"><div class="competence-box" >
+            <h3>Collaborer</h3>
+        </div></a>
+
+
+    </div>
+
+
+
+
+</section>
+
+   
+    <!-- Section À Propos -->
+    <section id="Apropos" class="section bg-dark">
+    <h2>À Propos</h2>
+    <div class="apropos-container">
+        <!-- Passion pour le Sport -->
+        <div class="apropos-card">
+            <div class="card-content">
+                <div class="card-icon">
+                </div>
+                <h3>Passion pour le Sport</h3>
+                <div class="card-divider"></div>
+                <p>Sportif passionné de basketball depuis une dizaine d'années, 
+                   je cultive l'esprit d'équipe et la persévérance à travers la pratique en club.</p>
+                <img src="images/basket.png" alt="Basketball photo" class="apropos-image">
+            </div>
+        </div>
+        
+        <!-- Culture & Loisirs -->
+        <div class="apropos-card">
+            <div class="card-content">
+                <div class="card-icon">
+            
+                </div>
+                <h3>Culture & Loisirs</h3>
+                <div class="card-divider"></div>
+                <p>Amateur de manhuas en anglais, particulièrement passionné par les récits 
+                   d'arts martiaux et d'aventures, je développe ma créativité et mes compétences linguistiques.</p>
+                <img src="images/martial-peak.jpg" alt="Martial Peak" class="apropos-image">
+            </div>
+        </div>
+
+        <!-- Engagement Associatif -->
+        <div class="apropos-card">
+            <div class="card-content">
+                <div class="card-icon">6
+                </div>
+                <h3>Engagement Associatif</h3>
+                <div class="card-divider"></div>
+                <p>Impliqué dans la vie étudiante, je participe activement aux projets associatifs,
+                   notamment en tant que développeur du site web de l'association <b><a href="https://www.sosliens.org" target="_blank"> SOSLiens</a></b>.</p>
+                <img src="images/sosliens.png" alt="SOSLiens logo" class="apropos-image">
+            </div>
+        </div>
+    </div>
+</section>
+
+ 
+    <!-- Section Contact -->
+<section id="Contact" class="section bg-dark">
+    <h2>Contact</h2>
+    <div class="contact-container">
+        <div class="contact-info">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email</h3>
+                <p><a href="mailto:colosalim1@gmail.com">colosalim1@gmail.com</a></p>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Téléphone</h3>
+                <p><a href="tel:+33768299652">+33 7 68 29 96 52</a></p>
+            </div>
+        </div>
+
+        <div class="social-links">
+            <h3>Mes Réseaux</h3>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/salim-colo-460625298/" target="_blank" class="social-icon">
+                    <img src="images/linkedin.png" alt="LinkedIn">
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://www.instagram.com/lezynf/" target="_blank" class="social-icon">
+                    <img src="images/instagram.png" alt="Instagram">
+                    <span>Instagram</span>
+                </a>
+                <a href="https://github.com/Lezynf" target="_blank" class="social-icon">
+                    <img src="images/github.png" alt="GitHub">
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+    <script src="script.js"></script>
+</body>
+</html>

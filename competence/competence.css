@@ -1,0 +1,155 @@
+/* Hérite des styles globaux */
+body {
+    background: #121212;
+    margin: 0;
+    padding: 0;
+    color: #F5F5F5;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* Navbar styles (repris du style principal) */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    width: fit-content;
+    height: 50px;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: color 0.3s, background-color 0.3s;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.navbar ul li a:hover {
+    color: #9370DB;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Styles spécifiques aux pages de compétences */
+section {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+article {
+    background-color: #292929;
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.5), 
+                0 0 20px rgba(196, 196, 196, 0.5), 
+                0 0 30px rgba(29, 165, 255, 0.5);
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px rgba(138, 43, 226, 0.5),
+                    0 0 20px rgba(196, 196, 196, 0.5),
+                    0 0 30px rgba(29, 165, 255, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(138, 43, 226, 0.8),
+                    0 0 30px rgba(196, 196, 196, 0.8),
+                    0 0 40px rgba(29, 165, 255, 0.8);
+    }
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: transparent;
+    -webkit-text-stroke: 1px #fff;
+    text-align: center;
+}
+
+h2 {
+    color: #9370DB;
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+h4 {
+    color: #F5F5F5;
+    font-size: 1.2em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    border-left: 3px solid #9370DB;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+/* Animation d'entrée */
+article {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    section {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+    }
+    
+    article {
+        padding: 20px;
+    }
+}
