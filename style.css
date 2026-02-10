@@ -424,22 +424,8 @@ section {
 }
 
 /* ============================================
-   BOOTSTRAP CAROUSEL - Personnalisé
+   CARDS (projets)
    ============================================ */
-#projectsCarousel {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px 0;
-}
-
-#projectsCarousel .carousel-inner {
-    padding: 20px 0;
-}
-
-#projectsCarousel .carousel-item {
-    padding: 0 15px;
-}
-
 .card {
     position: relative;
     background: linear-gradient(135deg, #292929 0%, #1f1f1f 100%);
@@ -454,70 +440,6 @@ section {
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(147, 112, 219, 0.4);
-}
-
-/* Contrôles Bootstrap personnalisés */
-#projectsCarousel .carousel-control-prev,
-#projectsCarousel .carousel-control-next {
-    width: 45px;
-    height: 45px;
-    background: rgba(147, 112, 219, 0.3);
-    border: 2px solid rgba(147, 112, 219, 0.5);
-    border-radius: 50%;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 1;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-}
-
-#projectsCarousel .carousel-control-prev {
-    left: -20px;
-}
-
-#projectsCarousel .carousel-control-next {
-    right: -20px;
-}
-
-#projectsCarousel .carousel-control-prev:hover,
-#projectsCarousel .carousel-control-next:hover {
-    background: rgba(147, 112, 219, 0.8);
-    border-color: rgba(147, 112, 219, 0.9);
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 4px 15px rgba(147, 112, 219, 0.5);
-}
-
-#projectsCarousel .carousel-control-prev-icon,
-#projectsCarousel .carousel-control-next-icon {
-    width: 20px;
-    height: 20px;
-}
-
-/* Indicateurs Bootstrap personnalisés */
-#projectsCarousel .carousel-indicators {
-    margin-bottom: -30px;
-}
-
-#projectsCarousel .carousel-indicators button {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: rgba(147, 112, 219, 0.4);
-    border: 2px solid rgba(147, 112, 219, 0.6);
-    margin: 0 5px;
-    transition: all 0.3s ease;
-}
-
-#projectsCarousel .carousel-indicators button.active {
-    background-color: #9370DB;
-    border-color: #9370DB;
-    transform: scale(1.2);
-    box-shadow: 0 0 10px rgba(147, 112, 219, 0.6);
-}
-
-#projectsCarousel .carousel-indicators button:hover {
-    background-color: rgba(147, 112, 219, 0.7);
-    transform: scale(1.1);
 }
 
 /* ============================================
@@ -535,18 +457,6 @@ section {
     }
 
     .carousel-btn.next {
-        right: -10px;
-    }
-
-    #projectsCarousel {
-        max-width: 900px;
-    }
-    
-    #projectsCarousel .carousel-control-prev {
-        left: -10px;
-    }
-    
-    #projectsCarousel .carousel-control-next {
         right: -10px;
     }
     
@@ -580,25 +490,6 @@ section {
     }
 
     .carousel-btn.next {
-        right: 5px;
-    }
-
-    #projectsCarousel {
-        max-width: 100%;
-        padding: 20px 10px;
-    }
-    
-    #projectsCarousel .carousel-control-prev,
-    #projectsCarousel .carousel-control-next {
-        width: 38px;
-        height: 38px;
-    }
-    
-    #projectsCarousel .carousel-control-prev {
-        left: 5px;
-    }
-    
-    #projectsCarousel .carousel-control-next {
         right: 5px;
     }
     
@@ -718,30 +609,6 @@ section {
         padding: 10px 20px;
         width: 100%;
         max-width: 250px;
-    }
-    
-    /* Bootstrap Carousel mobile */
-    #projectsCarousel {
-        padding: 15px 0;
-    }
-    
-    #projectsCarousel .carousel-control-prev,
-    #projectsCarousel .carousel-control-next {
-        width: 32px;
-        height: 32px;
-    }
-    
-    #projectsCarousel .carousel-control-prev {
-        left: 2px;
-    }
-    
-    #projectsCarousel .carousel-control-next {
-        right: 2px;
-    }
-    
-    #projectsCarousel .carousel-indicators button {
-        width: 8px;
-        height: 8px;
     }
     
     .card {
