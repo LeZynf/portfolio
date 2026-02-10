@@ -1,68 +1,7 @@
-
-
-let currentSlide = 1; // Commencer au 2ème projet (Travia)
-
-function showSlide(index) {
-    const slides = document.querySelectorAll('.carousel-item');
-    const indicators = document.querySelectorAll('.indicator');
-    const totalSlides = slides.length;
-    
-    // Boucle circulaire : si on dépasse, revenir au début ou à la fin
-    if (index >= totalSlides) {
-        currentSlide = 0;
-    } else if (index < 0) {
-        currentSlide = totalSlides - 1;
-    } else {
-        currentSlide = index;
-    }
-    
-    // Calculer le décalage pour centrer la carte active
-    const offset = -(currentSlide * 33.33) + 33.33;
-    document.querySelector('.carousel-inner').style.transform = `translateX(${offset}%)`;
-
-    slides.forEach((slide, i) => {
-        // Enlever toutes les classes active
-        slide.classList.remove('active');
-        
-        if (i === currentSlide) {
-            // Carte centrale : grande et opaque
-            slide.classList.add('active');
-            slide.style.transform = 'scale(1)';
-            slide.style.opacity = '1';
-            slide.style.zIndex = '10';
-        } else {
-            // Cartes latérales : plus petites et transparentes
-            slide.style.transform = 'scale(0.85)';
-            slide.style.opacity = '0.6';
-            slide.style.zIndex = '1';
-        }
-    });
-    
-    // Mettre à jour les indicateurs
-    indicators.forEach((indicator, i) => {
-        if (i === currentSlide) {
-            indicator.classList.add('active');
-        } else {
-            indicator.classList.remove('active');
-        }
-    });
-}
-
-function nextSlide() {
-    currentSlide++;
-    if (currentSlide >= document.querySelectorAll('.carousel-item').length) {
-        currentSlide = 0;
-    }
-    showSlide(currentSlide);
-}
-
-function prevSlide() {
-    currentSlide--;
-    if (currentSlide < 0) {
-        currentSlide = document.querySelectorAll('.carousel-item').length - 1;
-    }
-    showSlide(currentSlide);
-}
+// ============================================
+//    BOOTSTRAP CAROUSEL - Plus simple !
+// ============================================
+// Bootstrap gère tout automatiquement, pas besoin de code custom !
 
 document.addEventListener('DOMContentLoaded', () => {
     // Effet machine à écrire
@@ -134,7 +73,96 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    showSlide(currentSlide);
+    // Initialiser le carousel projets (custom)
+    const initProjectsCarousel = () => {
+        const carousel = document.querySelector('[data-projects-carousel]');
+        if (!carousel) {
+            return;
+        }
+
+        const track = carousel.querySelector('.carousel-track');
+        const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+        const prevBtn = carousel.querySelector('[data-carousel-prev]');
+        const nextBtn = carousel.querySelector('[data-carousel-next]');
+        const dotsContainer = carousel.querySelector('.carousel-dots');
+
+        if (!track || slides.length === 0) {
+            return;
+        }
+
+        let currentIndex = 0;
+
+        const buildDots = () => {
+            if (!dotsContainer) {
+                return;
+            }
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'carousel-dot';
+                dot.setAttribute('aria-label', `Aller au projet ${index + 1}`);
+                dot.addEventListener('click', () => {
+                    goTo(index);
+                });
+                dotsContainer.appendChild(dot);
+            });
+        };
+
+        const update = () => {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('is-active', index === currentIndex);
+            });
+            if (dotsContainer) {
+                Array.from(dotsContainer.children).forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+        };
+
+        const goTo = (index) => {
+            const maxIndex = slides.length - 1;
+            if (index < 0) {
+                currentIndex = maxIndex;
+            } else if (index > maxIndex) {
+                currentIndex = 0;
+            } else {
+                currentIndex = index;
+            }
+            update();
+        };
+
+        prevBtn?.addEventListener('click', () => {
+            goTo(currentIndex - 1);
+        });
+
+        nextBtn?.addEventListener('click', () => {
+            goTo(currentIndex + 1);
+        });
+
+        let touchStartX = null;
+        track.addEventListener('touchstart', (event) => {
+            touchStartX = event.touches[0].clientX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', (event) => {
+            if (touchStartX === null) {
+                return;
+            }
+            const touchEndX = event.changedTouches[0].clientX;
+            const deltaX = touchEndX - touchStartX;
+            if (Math.abs(deltaX) > 50) {
+                goTo(deltaX > 0 ? currentIndex - 1 : currentIndex + 1);
+            }
+            touchStartX = null;
+        });
+
+        buildDots();
+        update();
+    };
+
+    initProjectsCarousel();
 
     // Animated counters
     const counters = document.querySelectorAll('.stat-number');
@@ -182,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                document.querySelector('.carousel').classList.add('visible');
+                document.querySelector('.projects-carousel')?.classList.add('visible');
             }
         });
     }, { threshold: 0.1 });
@@ -246,73 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Ajouter les événements pour les contrôles du carousel
-    document.querySelector('.carousel-control.next').addEventListener('click', nextSlide);
-    document.querySelector('.carousel-control.prev').addEventListener('click', prevSlide);
-
-    // Navigation avec les indicateurs (dots)
-    const indicators = document.querySelectorAll('.indicator');
-    indicators.forEach((indicator) => {
-        indicator.addEventListener('click', () => {
-            const slideIndex = parseInt(indicator.getAttribute('data-slide'));
-            showSlide(slideIndex);
-        });
-    });
-
-    // Navigation au clavier (flèches gauche/droite)
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            prevSlide();
-        } else if (e.key === 'ArrowRight') {
-            nextSlide();
-        }
-    });
-
-    // Swipe sur mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    const carousel = document.querySelector('.carousel');
-    
-    carousel.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-    
-    carousel.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    });
-    
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        if (touchEndX < touchStartX - swipeThreshold) {
-            // Swipe gauche - suivant
-            nextSlide();
-        }
-        if (touchEndX > touchStartX + swipeThreshold) {
-            // Swipe droite - précédent
-            prevSlide();
-        }
-    }
-
-    // Auto-play optionnel du carousel (défilement automatique toutes les 5 secondes)
-    // Décommentez les lignes suivantes pour activer l'auto-play
-    /*
-    let autoPlayInterval = setInterval(() => {
-        nextSlide();
-    }, 5000); // 5 secondes
-
-    // Pause l'auto-play au hover
-    const carousel = document.querySelector('.carousel');
-    carousel.addEventListener('mouseenter', () => {
-        clearInterval(autoPlayInterval);
-    });
-    carousel.addEventListener('mouseleave', () => {
-        autoPlayInterval = setInterval(() => {
-            nextSlide();
-        }, 5000);
-    });
-    */
+    // Carousel projets géré en JS custom
 
     // Bouton retour en haut
     const scrollToTopBtn = document.getElementById('scrollToTop');
