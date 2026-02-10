@@ -3,7 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Salim Colo</title>
+    <title>Portfolio - Salim Colo | Étudiant BUT Informatique</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portfolio de Salim Colo, étudiant en BUT Informatique. Découvrez mes projets de développement web (Node.js, MongoDB, Python, PHP) et mes compétences en programmation.">
+    <meta name="keywords" content="Salim Colo, développeur, BUT Informatique, portfolio, développement web, Node.js, MongoDB, Python, PHP, JavaScript">
+    <meta name="author" content="Salim Colo">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags (Facebook, LinkedIn) -->
+    <meta property="og:title" content="Portfolio - Salim Colo | Étudiant BUT Informatique">
+    <meta property="og:description" content="Découvrez mes projets de développement web et mes compétences en programmation. Étudiant passionné en BUT Informatique.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lezynf.github.io/portfolio/">
+    <meta property="og:image" content="https://lezynf.github.io/portfolio/images/salim-nbg.png">
+    <meta property="og:locale" content="fr_FR">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Portfolio - Salim Colo | Étudiant BUT Informatique">
+    <meta name="twitter:description" content="Découvrez mes projets de développement web et mes compétences en programmation.">
+    <meta name="twitter:image" content="https://lezynf.github.io/portfolio/images/salim-nbg.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <!-- Preload critical CSS -->
     <link rel="preload" href="style.css" as="style">
@@ -35,15 +61,16 @@
 <body>
     <!-- Navbar -->
     <header>
-        <div class="menu-toggle">&#9776;</div>
-        <nav class="navbar">
+        <div class="menu-toggle" aria-label="Toggle menu" role="button" tabindex="0">&#9776;</div>
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
             <ul>
-                <li><a href="#Accueil">Accueil</a></li>
-                <li><a href="#Projet">Projets</a></li>
-                <li><a href="#Parcours">Parcours</a></li>
-                <li><a href="#Competences">Compétences</a></li>
-                <li><a href="#Apropos">À Propos</a></li>
-                <li><a href="#Contact">Contact</a></li>
+                <li><a href="#Accueil" aria-label="Aller à la section Accueil">Accueil</a></li>
+                <li><a href="#Projet" aria-label="Voir mes projets">Projets</a></li>
+                <li><a href="#Parcours" aria-label="Découvrir mon parcours">Parcours</a></li>
+                <li><a href="#Technologies" aria-label="Voir mes technologies">Technologies</a></li>
+                <li><a href="#Competences" aria-label="Explorer mes compétences">Compétences</a></li>
+                <li><a href="#Apropos" aria-label="En savoir plus sur moi">À Propos</a></li>
+                <li><a href="#Contact" aria-label="Me contacter">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -52,135 +79,219 @@
     <section id="Accueil" class="bg-b first-section">
         <div class="flex hor Accueil">
             <div class="photo-container">
-                <img src="images/salim-nbg.png" alt="Photo de Salim Colo" class="shadow">
+                <img src="images/salim-nbg.png" alt="Photo de Salim Colo" class="shadow" width="500" height="700" loading="eager">
                 <div class="fade-bottom"></div>
             </div>
 
 
             <div class="intro-text">
-                <h1>Bienvenue Sur Mon Portfolio</h1>
+                <h1 id="typewriter"></h1>
                 <p>Étudiant en <b>BUT Informatique</b> (2023 - 2026), je suis passionné par le développement</p> 
                 <p> Mon objectif : devenir développeur <u>front-end, back-end ou full-stack</u>.</p>
                 <p>Explorez mes projets, compétences et parcours et n’hésitez pas à me <a href="#Contact">contacter</a> !</p>
                 <div class="button-container">
-                    <a href="documents/cvAlternance.pdf" class="btn" download>Télécharger mon CV</a>
+                    <a href="documents/CV.pdf" class="btn" download>Télécharger mon CV</a>
                  
                 </div>
             </div>
         </div>
-<img class="bubble" src="images/bubble.webp" alt="">
+<img class="bubble" src="images/bubble.webp" alt="Bulles décoratives en arrière-plan" aria-hidden="true" width="300" height="300" loading="lazy">
 
     </section>
 
     
     <!-- Section Projets -->
     <section id="Projet" class="section">
-        <div class="modern-grid"></div>
+        <div class="modern-grid" aria-hidden="true"></div>
+        
+        <!-- Statistiques animées -->
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number" data-target="3">0</div>
+                <div class="stat-label">Années d'Études</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="8">0</div>
+                <div class="stat-label">Projets Réalisés</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="15">0</div>
+                <div class="stat-label">Technologies</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="100">0</div>
+                <div class="stat-label">Commits GitHub</div>
+            </div>
+        </div>
+        
         <h2>Mes Projets</h2>
-        <div class="carousel">
-            <div class="carousel-inner">
-                
-            <div class="carousel-item">
-                <div class="card shadowmulti">
-                    <h3 class="project-title">1. SNC'Hess</h3>
-                    <div class="center">
-                 <img src="images/train1.png" alt="snch">
+        
+        <!-- Carousel projets (custom) -->
+        <div class="projects-carousel" data-projects-carousel aria-roledescription="carousel" aria-label="Galerie des projets">
+            <button class="carousel-btn prev" type="button" aria-label="Projet précédent" data-carousel-prev>
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+            </button>
+
+            <div class="carousel-viewport">
+                <div class="carousel-track">
+                    <!-- Projet 1: SNC'Hess -->
+                    <div class="carousel-slide is-active">
+                        <div class="card shadowmulti">
+                            <div class="project-badge">
+                                <span class="badge">Node.js</span>
+                                <span class="badge">MongoDB</span>
+                            </div>
+                            <h3 class="project-title">1. SNC'Hess</h3>
+                            <div class="center">
+                                <img src="images/train1.png" alt="snch" width="600" height="400" loading="lazy">
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <h3>1. SNC'Hess </h3>
+                                    <p> Développement d'un site innovant pour la recherche de trajets, mettant en avant la concurrence sur le marché du transport. 
+                                        Utilisation d'une base de données NoSQL MongoDB et de Node.js pour la gestion des fonctionnalités. 
+                                    </p>
+                                    <div class="project-tags">
+                                        <span class="tag"><i class="fab fa-node-js"></i> Node.js</span>
+                                        <span class="tag"><i class="fas fa-database"></i> MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="overlay">
-                        <div class="text">
-                            <h3>1. SNC'Hess </h3>
-                            <p> Développement d'un site innovant pour la recherche de trajets, mettant en avant la concurrence sur le marché du transport. 
-                                Utilisation d'une base de données NoSQL MongoDB et de Node.js pour la gestion des fonctionnalités. 
-                            </p>
+
+                    <!-- Projet 2: Travia -->
+                    <div class="carousel-slide">
+                        <div class="card shadowmulti">
+                            <div class="project-badge">
+                                <span class="badge">PHP</span>
+                                <span class="badge">Star Wars</span>
+                            </div>
+                            <h3 class="project-title">2. Travia</h3>
+                            <div class="center">
+                                <img src="images/travia.png" alt="Travia" width="600" height="400" loading="lazy">
+                                <img src="images/travia2.png" alt="Travia2" width="600" height="400" loading="lazy">
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <h3>2. Travia </h3>
+                                    <p> Développement d'un site web dédié à la recherche de voyages spatiaux, 
+                                        inspiré de l'univers de Star Wars, intégrant une base de données et des calculs avancés.
+                                    </p>
+                                    <div class="project-tags">
+                                        <span class="tag"><i class="fab fa-php"></i> PHP</span>
+                                        <span class="tag"><i class="fas fa-database"></i> Database</span>
+                                        <span class="tag"><i class="fas fa-rocket"></i> Star Wars</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="card shadowmulti">
+                            <div class="project-badge">
+                                <span class="badge">PHP</span>
+                                <span class="badge">Graphiques</span>
+                            </div>
+                            <h3 class="project-title">3. BIF</h3>
+                            <div class="center">
+                                <img src="images/bif1.png" alt="BIF" width="600" height="400" loading="lazy">
+                                <img src="images/bif2.png" alt="BIF" width="600" height="400" loading="lazy">
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <h3>3. BIF</h3>
+                                    <p>Développement d'un gestionnaire de transactions bancaires intégrant une base de données, des graphiques interactifs et des fonctionnalités téléchargeables.</p>
+                                    <div class="project-tags">
+                                        <span class="tag"><i class="fab fa-php"></i> PHP</span>
+                                        <span class="tag"><i class="fas fa-chart-line"></i> Graphiques</span>
+                                        <span class="tag"><i class="fas fa-database"></i> Database</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="card shadowmulti">
+                            <div class="project-badge">
+                                <span class="badge">MySQL</span>
+                                <span class="badge">PostgreSQL</span>
+                            </div>
+                            <h3 class="project-title">4. Base de Données</h3>
+                            <div class="center">
+                                <img src="images/ski.png" alt="Base de Données" width="600" height="400" loading="lazy">
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <h3>4. Base de Données</h3>
+                                    <p>Intégration d'une base de données <b>MySQL</b> et <b>PostgreSQL</b> dans un site PHP pour une entreprise de ski.</p>
+                                    <div class="project-tags">
+                                        <span class="tag"><i class="fas fa-database"></i> MySQL</span>
+                                        <span class="tag"><i class="fas fa-database"></i> PostgreSQL</span>
+                                        <span class="tag"><i class="fab fa-php"></i> PHP</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="card shadowmulti">
+                            <div class="project-badge">
+                                <span class="badge">HTML5</span>
+                                <span class="badge">PHP</span>
+                            </div>
+                            <h3 class="project-title">5. Projet UNESCO</h3>
+                            <div class="center">
+                                <img src="images/florencee.png" alt="Projet UNESCO" width="600" height="400" loading="lazy">
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <h3>5. Projet UNESCO</h3>
+                                    <p>Site web touristique créé avec <b>HTML5, CSS3 et PHP</b>, dédié aux patrimoines UNESCO.</p>
+                                    <div class="project-tags">
+                                        <span class="tag"><i class="fab fa-html5"></i> HTML5</span>
+                                        <span class="tag"><i class="fab fa-css3-alt"></i> CSS3</span>
+                                        <span class="tag"><i class="fab fa-php"></i> PHP</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="card shadowmulti">
+                            <div class="project-badge">
+                                <span class="badge">Python</span>
+                                <span class="badge">FLTK</span>
+                            </div>
+                            <h3 class="project-title">6. Le Qix</h3>
+                            <div class="center">
+                                <img src="images/qix.png" alt="Qix" width="600" height="400" loading="lazy">
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <h3>6. Le Qix</h3>
+                                    <p>Un jeu rétro réalisé en <b>Python</b> utilisant FLTK, recréant le célèbre jeu d'arcade Qix.</p>
+                                    <div class="project-tags">
+                                        <span class="tag"><i class="fab fa-python"></i> Python</span>
+                                        <span class="tag"><i class="fas fa-gamepad"></i> FLTK</span>
+                                        <span class="tag"><i class="fas fa-trophy"></i> Arcade</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="carousel-item">
-                <div class="card shadowmulti">
-                    <h3 class="project-title">2. Travia</h3>
-                    <div class="center">
-                        <img src="images/travia.png" alt="Travia">
-                        <img src="images/travia2.png" alt="Travia2">
-                    </div>
-                    <div class="overlay">
-                        <div class="text">
-                            <h3>2. Travia </h3>
-                            <p> Développement d'un site web dédié à la recherche de voyages spatiaux, 
-                                inspiré de l'univers de Star Wars, intégrant une base de données et des calculs avancés.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <button class="carousel-btn next" type="button" aria-label="Projet suivant" data-carousel-next>
+                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </button>
 
-            <div class="carousel-item">
-                <div class="card shadowmulti">
-                    <h3 class="project-title">3. BIF</h3>
-                    <div class="center">
-                        <img src="images/bif1.png" alt="BIF">
-                        <img src="images/bif2.png" alt="BIF">
-                    </div>
-                    <div class="overlay">
-                        <div class="text">
-                            <h3>3. BIF</h3>
-                            <p>Développement d'un gestionnaire de transactions bancaires intégrant une base de données, des graphiques interactifs et des fonctionnalités téléchargeables.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <div class="card shadowmulti">
-                    <h3 class="project-title">4. Base de Données</h3>
-                    <div class="center">
-                        <img src="images/ski.png" alt="Base de Données">
-                    </div>
-                    <div class="overlay">
-                        <div class="text">
-                            <h3>4. Base de Données</h3>
-                            <p>Intégration d'une base de données <b>MySQL</b> et <b>PostgreSQL</b> dans un site PHP pour une entreprise de ski.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <div class="card shadowmulti">
-                    <h3 class="project-title">5. Projet UNESCO</h3>
-                    <div class="center">
-                        <img src="images/florencee.png" alt="Projet UNESCO">
-                    </div>
-                    <div class="overlay">
-                        <div class="text">
-                            <h3>5. Projet UNESCO</h3>
-                            <p>Site web touristique créé avec <b>HTML5, CSS3 et PHP</b>, dédié aux patrimoines UNESCO.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <div class="card shadowmulti">
-                    <h3 class="project-title">6. Le Qix</h3>
-                    <div class="center">
-                        <img src="images/qix.png" alt="Qix">
-                    </div>
-                    <div class="overlay">
-                        <div class="text">
-                            <h3>6. Le Qix</h3>
-                            <p>Un jeu rétro réalisé en <b>Python</b> utilisant FLTK, recréant le célèbre jeu d'arcade Qix.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            </div>
-            <button class="carousel-control prev" onclick="prevSlide()">&#10094;</button>
-            <button class="carousel-control next" onclick="nextSlide()">&#10095;</button>
+            <div class="carousel-dots" role="tablist" aria-label="Sélecteur de projets"></div>
         </div>
     </section>
 
@@ -198,7 +309,7 @@
                     <li>Développement d'applications</li>
                     <li>Programmation web</li>
                     <li>Base de données</li>
-                    <li>2ème année en cours</li>
+                    <li>3ème année en cours</li>
                 </ul>
             </div>
         </div>
@@ -276,6 +387,133 @@
 
 </section>
 
+
+    <!-- Section Technologies -->
+<section id="Technologies" class="section bg-dark">
+    <h2>Stack Technique</h2>
+    <p class="tech-subtitle">Les technologies que je maîtrise</p>
+    
+    <div class="tech-categories">
+        <!-- Frontend -->
+        <div class="tech-category">
+            <h3>Frontend</h3>
+            <div class="tech-grid">
+                <div class="tech-item" data-tech="HTML5">
+                    <div class="tech-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <span class="tech-name">HTML5</span>
+                </div>
+                <div class="tech-item" data-tech="CSS3">
+                    <div class="tech-icon">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <span class="tech-name">CSS3</span>
+                </div>
+                <div class="tech-item" data-tech="JavaScript">
+                    <div class="tech-icon">
+                        <i class="fab fa-js"></i>
+                    </div>
+                    <span class="tech-name">JavaScript</span>
+                </div>
+                <div class="tech-item" data-tech="React">
+                    <div class="tech-icon">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <span class="tech-name">React</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="tech-category">
+            <h3>Backend</h3>
+            <div class="tech-grid">
+                <div class="tech-item" data-tech="Node.js">
+                    <div class="tech-icon">
+                        <i class="fab fa-node-js"></i>
+                    </div>
+                    <span class="tech-name">Node.js</span>
+                </div>
+                <div class="tech-item" data-tech="Python">
+                    <div class="tech-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <span class="tech-name">Python</span>
+                </div>
+                <div class="tech-item" data-tech="PHP">
+                    <div class="tech-icon">
+                        <i class="fab fa-php"></i>
+                    </div>
+                    <span class="tech-name">PHP</span>
+                </div>
+                <div class="tech-item" data-tech="Java">
+                    <div class="tech-icon">
+                        <i class="fab fa-java"></i>
+                    </div>
+                    <span class="tech-name">Java</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bases de données -->
+        <div class="tech-category">
+            <h3>Bases de Données</h3>
+            <div class="tech-grid">
+                <div class="tech-item" data-tech="MongoDB">
+                    <div class="tech-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <span class="tech-name">MongoDB</span>
+                </div>
+                <div class="tech-item" data-tech="MySQL">
+                    <div class="tech-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <span class="tech-name">MySQL</span>
+                </div>
+                <div class="tech-item" data-tech="PostgreSQL">
+                    <div class="tech-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <span class="tech-name">PostgreSQL</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Outils -->
+        <div class="tech-category">
+            <h3>Outils & Versionning</h3>
+            <div class="tech-grid">
+                <div class="tech-item" data-tech="Git">
+                    <div class="tech-icon">
+                        <i class="fab fa-git-alt"></i>
+                    </div>
+                    <span class="tech-name">Git</span>
+                </div>
+                <div class="tech-item" data-tech="GitHub">
+                    <div class="tech-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <span class="tech-name">GitHub</span>
+                </div>
+                <div class="tech-item" data-tech="Docker">
+                    <div class="tech-icon">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <span class="tech-name">Docker</span>
+                </div>
+                <div class="tech-item" data-tech="VS Code">
+                    <div class="tech-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <span class="tech-name">VS Code</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
    
     <!-- Section À Propos -->
     <section id="Apropos" class="section bg-dark">
@@ -290,7 +528,7 @@
                 <div class="card-divider"></div>
                 <p>Sportif passionné de basketball depuis une dizaine d'années, 
                    je cultive l'esprit d'équipe et la persévérance à travers la pratique en club.</p>
-                <img src="images/basket.png" alt="Basketball photo" class="apropos-image">
+                <img src="images/basket.png" alt="Basketball photo" class="apropos-image" width="400" height="300" loading="lazy">
             </div>
         </div>
         
@@ -304,7 +542,7 @@
                 <div class="card-divider"></div>
                 <p>Amateur de manhuas en anglais, particulièrement passionné par les récits 
                    d'arts martiaux et d'aventures, je développe ma créativité et mes compétences linguistiques.</p>
-                <img src="images/martial-peak.jpg" alt="Martial Peak" class="apropos-image">
+                <img src="images/martial-peak.jpg" alt="Martial Peak" class="apropos-image" width="400" height="300" loading="lazy">
             </div>
         </div>
 
@@ -317,7 +555,7 @@
                 <div class="card-divider"></div>
                 <p>Impliqué dans la vie étudiante, je participe activement aux projets associatifs,
                    notamment en tant que développeur du site web de l'association <b><a href="https://www.sosliens.org" target="_blank"> SOSLiens</a></b>.</p>
-                <img src="images/sosliens.png" alt="SOSLiens logo" class="apropos-image">
+                <img src="images/sosliens.png" alt="SOSLiens logo" class="apropos-image" width="400" height="300" loading="lazy">
             </div>
         </div>
     </div>
@@ -349,22 +587,32 @@
         <div class="social-links">
             <h3>Mes Réseaux</h3>
             <div class="social-icons">
-                <a href="https://www.linkedin.com/in/salim-colo-460625298/" target="_blank" class="social-icon">
-                    <img src="images/linkedin.png" alt="LinkedIn">
+                <a href="https://www.linkedin.com/in/salim-colo-460625298/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Visitez mon profil LinkedIn">
+                    <img src="images/linkedin.png" alt="Logo LinkedIn" width="48" height="48" loading="lazy">
                     <span>LinkedIn</span>
                 </a>
-                <a href="https://www.instagram.com/lezynf/" target="_blank" class="social-icon">
-                    <img src="images/instagram.png" alt="Instagram">
+                <a href="https://www.instagram.com/lezynf/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Visitez mon profil Instagram">
+                    <img src="images/instagram.png" alt="Logo Instagram" width="48" height="48" loading="lazy">
                     <span>Instagram</span>
                 </a>
-                <a href="https://github.com/Lezynf" target="_blank" class="social-icon">
-                    <img src="images/github.png" alt="GitHub">
+                <a href="https://github.com/Lezynf" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Visitez mon profil GitHub">
+                    <img src="images/github.png" alt="Logo GitHub" width="48" height="48" loading="lazy">
                     <span>GitHub</span>
                 </a>
             </div>
         </div>
     </div>
 </section>
+
+    <!-- Bouton Retour en haut -->
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <!-- Custom Script -->
     <script src="script.js"></script>
 </body>
 </html>

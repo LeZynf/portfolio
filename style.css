@@ -17,35 +17,76 @@ h1 {
     padding: 0;
     color: transparent;
     -webkit-text-stroke: 1px #fff; /* Contour blanc */
+    min-height: 1.2em; /* Pour éviter le saut lors de l'animation */
+}
+
+/* Effet machine à écrire */
+#typewriter::after {
+    content: '|';
+    color: #9370DB;
+    -webkit-text-stroke: 0;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 /* Navbar */
 header {
-    position: sticky; /* Change from absolute to sticky */
+    position: sticky;
     top: 0;
     z-index: 1000;
     width: 100%;
 }
 
+/* Menu Toggle Button */
+.menu-toggle {
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+    background: rgba(147, 112, 219, 0.3);
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.menu-toggle:hover {
+    background: rgba(147, 112, 219, 0.6);
+    transform: scale(1.05);
+}
+
 .navbar {
-    background-color: rgba(0, 0, 0, 0.05); /* Fond noir avec une opacité de 0.05 pour plus de transparence */
+    background-color: rgba(0, 0, 0, 0.05);
     padding: 10px 20px;
     width: 100%;
+    transition: all 0.3s ease;
 }
 
 .navbar ul {
     list-style: none;
     padding: 0;
-    margin: 0 auto; /* Center the navbar */
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50px;
-    backdrop-filter: blur(15px); /* Ajoute un flou au fond */
-    border: 2px solid rgba(255, 255, 255, 0.1); /* Bordure blanche avec une opacité de 0.1 */
-    width: fit-content; /* Adjust the width to fit the content */
-    height: 50px; /* Set a fixed height for the navbar */
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    width: fit-content;
+    height: 50px;
     z-index: 1000;
+    transition: all 0.3s ease;
 }
 
 .navbar ul li {
@@ -64,6 +105,53 @@ header {
 .navbar ul li a:hover {
     color: #9370DB;
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .navbar {
+        background-color: transparent;
+    }
+
+    .navbar ul {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 300px;
+        flex-direction: column;
+        background: rgba(18, 18, 18, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 80px 20px 20px;
+        border-radius: 0;
+        border: none;
+        border-left: 2px solid rgba(147, 112, 219, 0.3);
+        transition: right 0.4s ease;
+        height: auto;
+        gap: 10px;
+    }
+
+    .navbar ul.active {
+        right: 0;
+    }
+
+    .navbar ul li {
+        margin: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar ul li a {
+        display: block;
+        padding: 15px 20px;
+        font-size: 18px;
+        border-radius: 10px;
+    }
 }
 
 /* Sections */
@@ -146,21 +234,32 @@ section {
 
 .Accueil {
     width: 100%;
-    height: 100vh; /* Fait correspondre la hauteur à la hauteur de la fenêtre */
+    min-height: 100vh; /* Fait correspondre la hauteur à la hauteur de la fenêtre */
+    height: auto;
     position: relative;
     display: flex; /* Active le mode flexbox */
     justify-content: space-between;
     align-items: center;
+    gap: 40px;
+    padding: 40px 20px;
+    flex-wrap: wrap;
 }
 
 .photo-container {
     position: relative;
-    height: 100vh;
+    height: auto;
+    flex: 1 1 360px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 }
 
 .photo-container img {
-    position: absolute;
+    position: relative;
     bottom: 0;
+    width: min(420px, 80vw);
+    height: auto;
+    max-height: 80vh;
     animation: slideInFromLeft 2s ease-out;
 }
 .fade-bottom {
@@ -177,7 +276,10 @@ section {
 .intro-text {
     margin: 0 5vw;
     font-size: large;
-    animation: slideInFromTop s ease-out;
+    line-height: 1.6;
+    max-width: 640px;
+    flex: 1 1 420px;
+    animation: slideInFromTop 1s ease-out;
 }
 
 @keyframes slideInFromLeft {
@@ -226,111 +328,476 @@ section {
     background-color: #7B68EE; /* Darker lavender violet for hover effect */
 }
 
-.carousel {
-    position: relative;
-
-    padding: 20px 60px;
+/* ============================================
+   CAROUSEL PROJETS - Custom
+   ============================================ */
+.projects-carousel {
+    max-width: 1200px;
+    max-height: 80vh;
     margin: 0 auto;
-    overflow: visible; /* Pour s'assurer que les contrôles sont visibles */
-    animation: slideInFromTop 2s ease-out;
-    animation-timeline: view();
-    animation-range: entry -20% cover 80%;
-    animation-fill-mode: forwards;
-}
-
-.carousel-inner {
+    padding: 30px 0 60px;
     position: relative;
-    display: flex;
-    gap: 20px;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    width: calc(100% + 40px); /* Ajustement de la largeur pour compenser le padding */
-    transform: translateX(0);
-    transition: transform 0.5s ease-in-out;
+    overflow: visible;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.6s ease;
 }
 
-.carousel-item {
-    flex: 0 0 calc(33.33% - 20px);
-    min-width: calc(33.33% - 20px);
-    transition: all 0.3s ease;
-    opacity: 0.7;
-    transform: scale(0.9);
-    position: relative;
-    z-index: 1;
-}
-
-.carousel-item.active {
+.projects-carousel.visible {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
+}
+
+.carousel-viewport {
+    overflow: hidden;
+    width: 100%;
+    max-height: 80vh;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s ease;
+    will-change: transform;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(147, 112, 219, 0.5);
+    background: rgba(147, 112, 219, 0.3);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 5;
+    backdrop-filter: blur(10px);
+}
+
+.carousel-btn:hover {
+    background: rgba(147, 112, 219, 0.8);
+    border-color: rgba(147, 112, 219, 0.9);
+    box-shadow: 0 4px 15px rgba(147, 112, 219, 0.5);
+}
+
+.carousel-btn.prev {
+    left: -20px;
+}
+
+.carousel-btn.next {
+    right: -20px;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid rgba(147, 112, 219, 0.6);
+    background: rgba(147, 112, 219, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-dot.active,
+.carousel-dot:hover {
+    background: #9370DB;
+    transform: scale(1.15);
+    box-shadow: 0 0 12px rgba(147, 112, 219, 0.6);
+}
+
+/* ============================================
+   BOOTSTRAP CAROUSEL - Personnalisé
+   ============================================ */
+#projectsCarousel {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+
+#projectsCarousel .carousel-inner {
+    padding: 20px 0;
+}
+
+#projectsCarousel .carousel-item {
+    padding: 0 15px;
 }
 
 .card {
     position: relative;
-    background-color: #292929;
-    border-radius: 10px;
-    padding: 20px;
-    height: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(135deg, #292929 0%, #1f1f1f 100%);
+    border-radius: 15px;
+    padding: 30px;
+    min-height: 450px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: none;
 }
 
-.carousel-control {
-    position: absolute;
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(147, 112, 219, 0.4);
+}
+
+/* Contrôles Bootstrap personnalisés */
+#projectsCarousel .carousel-control-prev,
+#projectsCarousel .carousel-control-next {
+    width: 45px;
+    height: 45px;
+    background: rgba(147, 112, 219, 0.3);
+    border: 2px solid rgba(147, 112, 219, 0.5);
+    border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background: rgba(147, 112, 219, 0.2);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10; /* Augmentation du z-index */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 24px;
-    transition: background-color 0.3s ease;
+    opacity: 1;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
-.carousel-control:hover {
+#projectsCarousel .carousel-control-prev {
+    left: -20px;
+}
+
+#projectsCarousel .carousel-control-next {
+    right: -20px;
+}
+
+#projectsCarousel .carousel-control-prev:hover,
+#projectsCarousel .carousel-control-next:hover {
     background: rgba(147, 112, 219, 0.8);
+    border-color: rgba(147, 112, 219, 0.9);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 15px rgba(147, 112, 219, 0.5);
 }
 
-.carousel-control.prev {
-    left: 10px;
+#projectsCarousel .carousel-control-prev-icon,
+#projectsCarousel .carousel-control-next-icon {
+    width: 20px;
+    height: 20px;
 }
 
-.carousel-control.next {
-    right: 10px;
+/* Indicateurs Bootstrap personnalisés */
+#projectsCarousel .carousel-indicators {
+    margin-bottom: -30px;
 }
 
+#projectsCarousel .carousel-indicators button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(147, 112, 219, 0.4);
+    border: 2px solid rgba(147, 112, 219, 0.6);
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+
+#projectsCarousel .carousel-indicators button.active {
+    background-color: #9370DB;
+    border-color: #9370DB;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(147, 112, 219, 0.6);
+}
+
+#projectsCarousel .carousel-indicators button:hover {
+    background-color: rgba(147, 112, 219, 0.7);
+    transform: scale(1.1);
+}
+
+/* ============================================
+   RESPONSIVE CAROUSEL
+   ============================================ */
+
+/* Tablettes larges */
 @media (max-width: 1024px) {
-    .carousel-item {
-        flex: 0 0 calc(50% - 20px);
-        min-width: calc(50% - 20px);
+    .projects-carousel {
+        max-width: 980px;
+    }
+
+    .carousel-btn.prev {
+        left: -10px;
+    }
+
+    .carousel-btn.next {
+        right: -10px;
+    }
+
+    #projectsCarousel {
+        max-width: 900px;
+    }
+    
+    #projectsCarousel .carousel-control-prev {
+        left: -10px;
+    }
+    
+    #projectsCarousel .carousel-control-next {
+        right: -10px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    .intro-text {
+        font-size: 1em;
     }
 }
 
+/* Tablettes */
 @media (max-width: 768px) {
-    .carousel-item {
-        flex: 0 0 calc(100% - 20px);
-        min-width: calc(100% - 20px);
+    .projects-carousel {
+        max-width: 100%;
+        padding: 20px 0 50px;
     }
 
+    .carousel-slide {
+        padding: 0 10px;
+    }
+
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-btn.prev {
+        left: 5px;
+    }
+
+    .carousel-btn.next {
+        right: 5px;
+    }
+
+    #projectsCarousel {
+        max-width: 100%;
+        padding: 20px 10px;
+    }
+    
+    #projectsCarousel .carousel-control-prev,
+    #projectsCarousel .carousel-control-next {
+        width: 38px;
+        height: 38px;
+    }
+    
+    #projectsCarousel .carousel-control-prev {
+        left: 5px;
+    }
+    
+    #projectsCarousel .carousel-control-next {
+        right: 5px;
+    }
+    
+    .card {
+        padding: 25px;
+        min-height: 400px;
+    }
+
+    .project-badge {
+        position: static;
+        justify-content: center;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+    }
+
+    .overlay {
+        position: static;
+        opacity: 1;
+        pointer-events: auto;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .card:hover .overlay {
+        box-shadow: none;
+        background: transparent;
+    }
+
+    .overlay .text {
+        padding: 15px 0 0;
+        opacity: 1;
+        transform: none;
+    }
 
     .photo-container {
         display: none;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+        -webkit-text-stroke: 0.5px #fff;
+    }
+    
+    h2 {
+        font-size: 1.8em;
+    }
+    
+    .intro-text {
+        margin: 0 20px;
+        font-size: 0.95em;
+    }
+    
+    .Accueil {
+        height: auto;
+        min-height: 100vh;
+        padding: 20px 0;
+    }
+    
+    .timeline-content {
+        padding: 15px;
+    }
+    
+    .apropos-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .contact-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .carousel-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .carousel-btn.prev {
+        left: 2px;
+    }
+
+    .carousel-btn.next {
+        right: 2px;
+    }
+
+    .carousel-dot {
+        width: 9px;
+        height: 9px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+    }
+    
+    .intro-text {
+        font-size: 0.9em;
+        margin: 0 15px;
+    }
+    
+    /* Boutons responsive */
+    .button-container {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 25px;
+    }
+    
+    .btn {
+        font-size: 14px;
+        padding: 10px 20px;
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    /* Bootstrap Carousel mobile */
+    #projectsCarousel {
+        padding: 15px 0;
+    }
+    
+    #projectsCarousel .carousel-control-prev,
+    #projectsCarousel .carousel-control-next {
+        width: 32px;
+        height: 32px;
+    }
+    
+    #projectsCarousel .carousel-control-prev {
+        left: 2px;
+    }
+    
+    #projectsCarousel .carousel-control-next {
+        right: 2px;
+    }
+    
+    #projectsCarousel .carousel-indicators button {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .card {
+        padding: 20px;
+        min-height: 350px;
+    }
+    
+    .overlay .text {
+        padding: 20px;
+    }
+    
+    .overlay h3 {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    
+    .overlay p {
+        font-size: 0.95em;
+        line-height: 1.6;
+    }
+    
+    .project-title {
+        font-size: 1.4em;
+        margin-bottom: 12px;
+    }
+    
+    /* Section spacing mobile */
+    section {
+        padding: 40px 15px;
+    }
+    
+    .Accueil {
+        padding: 60px 15px;
     }
 }
 
 .card img {
     width: 100%;
+    max-width: 100%;
     height: auto;
     display: block;
+    object-fit: cover;
+    margin: 0 auto;
+    
 }
 
-.card:hover {
-    transform: scale(1.05);
+.card .center {
+    display: grid;
+    gap: 12px;
+    align-items: center;
+    justify-items: center;
+}
+
+.projects-carousel .center {
+    justify-content: center;
+    align-items: center;
 }
 
 .overlay {
@@ -367,7 +834,7 @@ section {
 }
 
 .overlay .text {
-    padding: 30px;
+    padding: 40px;
     transform: translateY(20px);
     opacity: 0;
     transition: all 0.4s ease;
@@ -380,14 +847,15 @@ section {
 
 .overlay h3 {
     color: #9370DB;
-    margin-bottom: 15px;
-    font-size: 1.4em;
+    margin-bottom: 20px;
+    font-size: 1.6em;
     text-shadow: 0 0 10px rgba(147, 112, 219, 0.5);
 }
 
 .overlay p {
-    line-height: 1.6;
-    margin-top: 10px;
+    line-height: 1.8;
+    margin-top: 15px;
+    font-size: 1.05em;
 }
 
 .overlay p b {
@@ -398,8 +866,142 @@ section {
 
 .project-title {
     text-align: center;
-    font-size: 1.5em;
-    margin-bottom: 10px;
+    font-size: 1.7em;
+    margin-bottom: 15px;
+    color: #9370DB;
+    font-weight: bold;
+    text-shadow: 0 2px 10px rgba(147, 112, 219, 0.3);
+}
+
+/* ============================================
+   BADGES ET TAGS DE PROJET
+   ============================================ */
+.project-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 5;
+}
+
+.badge {
+    background: linear-gradient(135deg, rgba(147, 112, 219, 0.9), rgba(123, 104, 238, 0.9));
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 10px rgba(147, 112, 219, 0.3);
+    transition: all 0.3s ease;
+}
+
+.badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(147, 112, 219, 0.5);
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.tag {
+    background: rgba(147, 112, 219, 0.2);
+    color: #9370DB;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    font-weight: 500;
+    border: 1px solid rgba(147, 112, 219, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    background: rgba(147, 112, 219, 0.4);
+    transform: scale(1.05);
+}
+
+.tag i {
+    font-size: 1.1em;
+}
+
+/* ============================================
+   INDICATEURS DE NAVIGATION (DOTS)
+   ============================================ */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+    padding: 20px 0;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(147, 112, 219, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.indicator:hover {
+    background: rgba(147, 112, 219, 0.6);
+    transform: scale(1.2);
+}
+
+.indicator.active {
+    background: linear-gradient(135deg, #9370DB, #7B68EE);
+    width: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(147, 112, 219, 0.6);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Effet de profondeur 3D sur les cartes */
+.card {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.carousel-item.active .card,
+.carousel-slide.is-active .card {
+    animation: cardFloat 3s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Animation d'entrée pour les badges */
+.project-badge .badge {
+    animation: badgeSlideIn 0.6s ease-out;
+}
+
+@keyframes badgeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .prog {
@@ -474,7 +1076,7 @@ section {
 .section {
     min-height: 100vh;
     position: relative;
-    padding: 60px 20px;
+    padding: clamp(50px, 6vw, 90px) clamp(16px, 4vw, 50px);
     background: #121212; /* Background (presque noir) */
     color: #F5F5F5; /* Texte principal (presque blanc) */
 }
@@ -1278,6 +1880,341 @@ box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* Add shadow */
     animation: slideUpFade 0.6s ease-out forwards;
 }
 
+/* ============================================
+   COMPTEURS STATISTIQUES
+   ============================================ */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    padding: 40px 20px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(41, 41, 41, 0.5);
+    border-radius: 15px;
+    border: 2px solid rgba(147, 112, 219, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #9370DB, #7B68EE);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover::before {
+    transform: scaleX(1);
+}
+
+.stat-item:hover {
+    border-color: rgba(147, 112, 219, 0.6);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(147, 112, 219, 0.3);
+}
+
+.stat-number {
+    font-size: 3em;
+    font-weight: bold;
+    color: #9370DB;
+    margin-bottom: 10px;
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(147, 112, 219, 0.5);
+}
+
+.stat-number::after {
+    content: '+';
+    font-size: 0.7em;
+    margin-left: 5px;
+}
+
+.stat-label {
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Animation pour les compteurs */
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-item.animate {
+    animation: countUp 0.6s ease-out;
+}
+
+/* Responsive Stats */
+@media (max-width: 768px) {
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 30px 15px;
+    }
+    
+    .stat-number {
+        font-size: 2.5em;
+    }
+    
+    .stat-label {
+        font-size: 0.85em;
+    }
+    
+    /* Responsive badges et tags pour tablettes */
+    .project-badge {
+        top: 8px;
+        right: 8px;
+        gap: 6px;
+    }
+    
+    .badge {
+        padding: 5px 10px;
+        font-size: 0.7em;
+    }
+    
+    .project-tags {
+        padding: 10px;
+        gap: 6px;
+    }
+    
+    .tag {
+        padding: 4px 10px;
+        font-size: 0.7em;
+    }
+    
+    .carousel-indicators {
+        gap: 8px;
+    }
+    
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   SECTION TECHNOLOGIES
+   ============================================ */
+#Technologies {
+    padding: 80px 20px;
+}
+
+#Technologies h2 {
+    margin-bottom: 10px;
+}
+
+.tech-subtitle {
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 50px;
+}
+
+.tech-categories {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.tech-category {
+    background: rgba(41, 41, 41, 0.5);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(147, 112, 219, 0.2);
+    transition: all 0.3s ease;
+}
+
+.tech-category:hover {
+    border-color: rgba(147, 112, 219, 0.5);
+    box-shadow: 0 5px 20px rgba(147, 112, 219, 0.2);
+    transform: translateY(-5px);
+}
+
+.tech-category h3 {
+    color: #9370DB;
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: rgba(18, 18, 18, 0.6);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(147, 112, 219, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.tech-item:hover::before {
+    left: 100%;
+}
+
+.tech-item:hover {
+    background: rgba(147, 112, 219, 0.2);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(147, 112, 219, 0.4);
+}
+
+.tech-icon {
+    font-size: 3em;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.tech-item:hover .tech-icon {
+    transform: scale(1.2) rotateY(360deg);
+    color: #9370DB;
+}
+
+/* Couleurs spécifiques pour chaque technologie */
+.tech-item[data-tech="HTML5"] .tech-icon { color: #E34F26; }
+.tech-item[data-tech="CSS3"] .tech-icon { color: #1572B6; }
+.tech-item[data-tech="JavaScript"] .tech-icon { color: #F7DF1E; }
+.tech-item[data-tech="React"] .tech-icon { color: #61DAFB; }
+.tech-item[data-tech="Node.js"] .tech-icon { color: #339933; }
+.tech-item[data-tech="Python"] .tech-icon { color: #3776AB; }
+.tech-item[data-tech="PHP"] .tech-icon { color: #777BB4; }
+.tech-item[data-tech="Java"] .tech-icon { color: #007396; }
+.tech-item[data-tech="MongoDB"] .tech-icon { color: #47A248; }
+.tech-item[data-tech="MySQL"] .tech-icon { color: #4479A1; }
+.tech-item[data-tech="PostgreSQL"] .tech-icon { color: #336791; }
+.tech-item[data-tech="Git"] .tech-icon { color: #F05032; }
+.tech-item[data-tech="GitHub"] .tech-icon { color: #fff; }
+.tech-item[data-tech="Docker"] .tech-icon { color: #2496ED; }
+.tech-item[data-tech="VS Code"] .tech-icon { color: #007ACC; }
+
+.tech-name {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    transition: color 0.3s ease;
+}
+
+.tech-item:hover .tech-name {
+    color: #9370DB;
+}
+
+/* Responsive Technologies */
+@media (max-width: 768px) {
+    .tech-categories {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .tech-category {
+        padding: 20px;
+    }
+    
+    .tech-icon {
+        font-size: 2.5em;
+    }
+    
+    .tech-item {
+        padding: 15px;
+    }
+    
+    .tech-name {
+        font-size: 0.85em;
+    }
+    
+    /* Responsive badges */
+    .project-badge {
+        top: 10px;
+        right: 10px;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+    
+    .badge {
+        padding: 5px 10px;
+        font-size: 0.7em;
+        border-radius: 12px;
+    }
+    
+    /* Responsive tags */
+    .project-tags {
+        padding: 10px;
+        gap: 6px;
+        margin-top: 10px;
+    }
+    
+    .tag {
+        padding: 5px 10px;
+        font-size: 0.75em;
+        border-radius: 10px;
+    }
+    
+    .tag i {
+        font-size: 0.8em;
+        margin-right: 3px;
+    }
+    
+    /* Carousel indicators responsive */
+    .carousel-indicators {
+        gap: 6px;
+    }
+    
+    .indicator {
+        width: 8px;
+        height: 8px;
+    }
+}
+
 #Competences .competence-box:nth-child(1) { animation-delay: 0.1s; }
 #Competences .competence-box:nth-child(2) { animation-delay: 0.2s; }
 #Competences .competence-box:nth-child(3) { animation-delay: 0.3s; }
@@ -1368,4 +2305,76 @@ p a:hover {
     color: inherit; /* Pas de changement de couleur */
     background-color: transparent; /* Pas de changement de fond */
     box-shadow: none; /* Pas d'ombre */
+}
+
+/* ============================================
+   BOUTON RETOUR EN HAUT
+   ============================================ */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #9370DB, #7B68EE);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 5px 15px rgba(147, 112, 219, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(147, 112, 219, 0.6);
+    background: linear-gradient(135deg, #7B68EE, #9370DB);
+}
+
+.scroll-to-top:active {
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Animation de pulsation */
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 5px 15px rgba(147, 112, 219, 0.4);
+    }
+    50% {
+        box-shadow: 0 5px 25px rgba(147, 112, 219, 0.7);
+    }
+}
+
+.scroll-to-top.visible {
+    animation: pulse 2s infinite;
+}
+
+/* Responsive Bouton */
+@media (max-width: 768px) {
+    .scroll-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+}
+
+/* Desktop: limiter la hauteur des images du carousel */
+@media (min-width: 1025px) {
+    .projects-carousel .card img {
+        max-height: 50vh;
+    }
 }
