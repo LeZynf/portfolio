@@ -258,19 +258,11 @@ section {
     position: relative;
     bottom: 0;
     width: min(420px, 80vw);
-    height: auto;
+    height: min(420px, 80vw);
     max-height: 80vh;
     animation: slideInFromLeft 2s ease-out;
-}
-.fade-bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 30%; /* La taille du fondu, ajustable */
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
-    pointer-events: none; /* Permet de cliquer sur l'image sans interférence */
-    z-index: 200;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .intro-text {
@@ -421,6 +413,43 @@ section {
     background: #9370DB;
     transform: scale(1.15);
     box-shadow: 0 0 12px rgba(147, 112, 219, 0.6);
+}
+
+/* Section GitHub Link */
+.github-section {
+    background: #121212;
+    padding: 30px 20px;
+    min-height: auto;
+}
+
+/* Lien GitHub sous le carousel */
+.github-link-container {
+    text-align: center;
+    margin-top: 0;
+    font-size: 1.1em;
+}
+
+.github-link-container p {
+    color: #F5F5F5;
+}
+
+.github-link {
+    color: #9370DB;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.github-link:hover {
+    color: #B794F4;
+    transform: translateY(-2px);
+}
+
+.github-link i {
+    font-size: 1.3em;
 }
 
 /* ============================================
