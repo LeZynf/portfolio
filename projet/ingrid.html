@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet INGRID - Eiffel Time</title>
+    <meta name="description" content="Présentation du projet INGRID : plateforme scolaire Eiffel Time web et mobile, objectifs, problématique et compétences BUT Informatique 3 acquises.">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        :root {
+            --bg-main: #0f1115;
+            --bg-card: #1b1f28;
+            --bg-accent: #242a38;
+            --text-main: #f5f7ff;
+            --text-muted: #c5cbe0;
+            --primary: #5aa9ff;
+            --secondary: #7bd389;
+            --border: rgba(255, 255, 255, 0.12);
+            --shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-main);
+            background:
+                radial-gradient(circle at 0% 0%, rgba(90, 169, 255, 0.15), transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(123, 211, 137, 0.12), transparent 35%),
+                var(--bg-main);
+            min-height: 100vh;
+        }
+
+        .page {
+            width: min(1080px, 92%);
+            margin: 40px auto 70px;
+        }
+
+        .top-actions {
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            padding: 10px 14px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            border-color: rgba(90, 169, 255, 0.65);
+        }
+
+        .hero {
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-accent));
+            box-shadow: var(--shadow);
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .title {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .title h1 {
+            margin: 0;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+        }
+
+        .chip {
+            background: rgba(90, 169, 255, 0.2);
+            color: #dbeeff;
+            border: 1px solid rgba(90, 169, 255, 0.45);
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.75;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.15rem;
+            color: #e9f2ff;
+        }
+
+        .span-8 {
+            grid-column: span 8;
+        }
+
+        .span-4 {
+            grid-column: span 4;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        .list {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        .competences {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+
+        .competence-item {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 14px;
+        }
+
+        .competence-item h3 {
+            margin: 0 0 8px;
+            font-size: 1rem;
+            color: #f2f8ff;
+        }
+
+        .competence-item p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .links a {
+            color: var(--text-main);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 8px 10px;
+            font-size: 0.9rem;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .links a:hover {
+            border-color: rgba(123, 211, 137, 0.7);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            .span-8,
+            .span-4 {
+                grid-column: 1 / -1;
+            }
+
+            .page {
+                margin-top: 20px;
+            }
+
+            .hero,
+            .card {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <div class="top-actions">
+            <a class="back-link" href="../index.html#Projet"><i class="fas fa-arrow-left" aria-hidden="true"></i> Retour aux projets</a>
+        </div>
+
+        <section class="hero" aria-labelledby="titre-projet-ingrid">
+            <div class="title">
+                <h1 id="titre-projet-ingrid">Projet INGRID - Eiffel Time</h1>
+                <span class="chip">Web + Mobile</span>
+                <span class="chip">React / React Native</span>
+            </div>
+            <p>
+                INGRID vise la refonte complète d'Eiffel Time, la plateforme scolaire de l'IUT, pour proposer une expérience moderne,
+                intuitive et multi-plateformes. L'objectif est de centraliser l'ensemble des besoins des étudiants, enseignants,
+                secrétaires, gestionnaires et administrateurs au sein d'un outil unique.
+            </p>
+        </section>
+
+        <section class="grid" aria-label="Détails du projet INGRID">
+            <article class="card span-8">
+                <h2>Contexte du projet</h2>
+                <p class="list">
+                    Le projet répond aux limites de l'ancienne version d'Eiffel Time : interface obsolète, absence de version mobile,
+                    navigation complexe et fonctionnalités incomplètes. La nouvelle solution accompagne la digitalisation de
+                    l'établissement en centralisant emplois du temps, notes, absences, messagerie et gestion administrative.
+                </p>
+            </article>
+
+            <article class="card span-4">
+                <h2>Problématique</h2>
+                <p class="list">
+                    Comment concevoir une plateforme scolaire web et mobile qui couvre les besoins de tous les acteurs de l'IUT,
+                    tout en garantissant performance, sécurité et maintenabilité ?
+                </p>
+            </article>
+
+            <article class="card full">
+                <h2>Objectifs du projet</h2>
+                <ul class="list">
+                    <li>Remplacer l'ancienne plateforme Eiffel Time par une solution moderne et complète.</li>
+                    <li>Proposer une interface unifiée sur le web (React) et le mobile (React Native).</li>
+                    <li>Centraliser absences, notes, emplois du temps et messagerie.</li>
+                    <li>Garantir la sécurité des données avec JWT et une logique conforme RGPD.</li>
+                    <li>Adopter une architecture évolutive et maintenable en monorepo.</li>
+                </ul>
+            </article>
+
+            <article class="card full">
+                <h2>Compétences BUT Informatique 3 développées</h2>
+                <div class="competences">
+                    <div class="competence-item">
+                        <h3>Réaliser</h3>
+                        <p>Compétence renforcée en réalisant INGRID (web + mobile) et consolidée sur SNC'Hess et BIF avec des fonctionnalités complètes côté interface et logique métier.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h3>Optimiser</h3>
+                        <p>Travail concret sur l'optimisation de navigation et de lisibilité avec INGRID, puis sur l'affichage de données (graphiques BIF) et l'expérience utilisateur (UNESCO).</p>
+                    </div>
+                    <div class="competence-item">
+                        <h3>Administrer</h3>
+                        <p>Compétence acquise par l'authentification JWT, la gestion des rôles et la sécurité des accès sur INGRID, en complément des schémas de données de SNC'Hess.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h3>Gérer</h3>
+                        <p>Structuration des données sur INGRID (notes, absences, emplois du temps) et pratique de la gestion de base sur Travia, BIF et Base de Données.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h3>Conduire</h3>
+                        <p>Compétence développée en découpant les projets de l'année en étapes (MVP, tests, itérations), notamment sur INGRID et SNC'Hess avec priorisation des livrables.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h3>Collaborer</h3>
+                        <p>Compétence mobilisée sur tous les projets de l'année via le travail en équipe, les revues de code et la coordination avec différents besoins utilisateurs.</p>
+                    </div>
+                    <div class="competence-item">
+                        <h3>Soft skills - Communication</h3>
+                        <p>J'ai amélioré ma communication en expliquant les choix techniques à l'oral, en rédigeant des synthèses de projet et en adaptant mon discours selon l'interlocuteur (équipe, encadrants, utilisateurs).</p>
+                    </div>
+                </div>
+
+                <h2>Lien avec les projets de cette année</h2>
+                <ul class="list">
+                    <li>INGRID : projet principal de refonte applicative web/mobile, sécurité et architecture maintenable.</li>
+                    <li>SNC'Hess : pratique backend Node.js et gestion de données MongoDB.</li>
+                    <li>BIF : visualisation de données et logique applicative orientée métier.</li>
+                    <li>Travia / UNESCO / Base de Données : consolidation web, gestion de données relationnelles et qualité de communication technique.</li>
+                </ul>
+
+                <div class="links" aria-label="Liens vers les pages compétences">
+                    <a href="https://eiffel-time.jawedessahli.com/" target="_blank" rel="noopener noreferrer">Voir le site INGRID</a>
+                    <a href="../competence/realiser.html">Voir Réaliser</a>
+                    <a href="../competence/optimiser.html">Voir Optimiser</a>
+                    <a href="../competence/Administrer.html">Voir Administrer</a>
+                    <a href="../competence/gerer.html">Voir Gérer</a>
+                    <a href="../competence/conduire.html">Voir Conduire</a>
+                    <a href="../competence/collaborer.html">Voir Collaborer</a>
+                </div>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
